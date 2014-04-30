@@ -20,6 +20,7 @@ int main() {
 
   for(int i = 1; i <= N; i++) {
     result *= (3*i - 1);
+    cout << "Zwischenergebnis fuer i = " << i << ": " << result << endl;
   }
 
   cout << "Das Ergebnis des Produkts betraegt: " << result << endl;
