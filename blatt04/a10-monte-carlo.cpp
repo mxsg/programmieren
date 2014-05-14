@@ -33,12 +33,12 @@ int main() {
     x = double(rand())/RAND_MAX;
     y = double(rand())/RAND_MAX;
 
-    if((x*x + y*y) <= 1) {
+    if((pow(x,2) + pow(y,2)) <= 1.0) {
       nTreffer++;
     }
   }
 
-  double piApprox = nTreffer/double(n) * 4.0;
+  double piApprox = double(nTreffer)/n * 4.0;
 
   // Ergebnis fuer Pi ausgeben
   cout << "Das numerisch ermittelte Ergebnis fuer Pi betraegt: " << piApprox << endl;
