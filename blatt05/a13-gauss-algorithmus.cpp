@@ -68,6 +68,7 @@ int main() {
     }
     cout << "| " << setw(9) << b[i] << endl;
   }
+  cout << endl;
 
   // nach Spaltenpivotisierung fragen
   char pivotAntw;
@@ -112,6 +113,17 @@ int main() {
       b[j] += ratio * b[i];
     }
   }
+
+  // LGS anzeigen
+  cout << "Dreiecksform:" << endl;
+  for(int i = 0; i<n; i++) {
+    double z;
+    for(int j = 0; j<n; j++) {
+      cout << setprecision(3) << setw(8) << koeff[i][j] << " ";
+    }
+    cout << "| " << setw(9) << b[i] << endl;
+  }
+  cout << endl;
   
   // Rueckwaertsaufloesen
   double x[n]; // Loesungsvektor
