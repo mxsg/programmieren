@@ -40,35 +40,23 @@ int main() {
   }
 
   // Abmessungen des Bilds auslesen
-  int width = 0, heigth = 0;
-  fin >> width >> heigth;
+  int width = 0, height = 0;
+  fin >> width >> height;
 
-  // mitzaehlen, wie viele des aktuellen Symbols folgen
+  // aktuelles Symbol und verbleibende Anzahl
   int currentSymb;
   int currentSymbCtr = 0;
-  int lineCtr = width;
 
-  int remSymb = width*heigth;
-  
-  // ueber verbleibende Zeichen iterieren
-  while(remSymb > 0) { 
-    
-    // neues Symbol einlesen
-    if(!currentSymbCtr) {
-      fin >> currentSymb  >> currentSymbCtr;
-    }
+  // ueber Zeilen und Spalten iterieren
+  for(int i = 0; i < height; i++) {
+    for(int j = 0; j < width; j++) {
 
-    if(!lineCtr) {
-      cout << "\n";
-      lineCtr = width;
-    }
+      if(!currentSymbCtr) fin >> currentSymb >> currentSymbCtr;
 
-    while(currentSymbCtr > 0 && lineCtr > 0) {
       cout << symbols[currentSymb];
       currentSymbCtr--;
-      lineCtr--;
-      remSymb--;
     }
+    cout << "\n";
   }
 
   return(0);
