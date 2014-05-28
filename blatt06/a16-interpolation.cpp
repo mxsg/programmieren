@@ -9,12 +9,15 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
+#include <sys/syscall.h>
 
 using namespace std;
 
 const int maxPoints = 200;
 const string defaultInputFile = "a16-interpol.dat";
 const string resultFile = "a16-interpol-res.dat";
+const string plotFile = "a16-plot.gp";
 
 int main() {
 
@@ -81,4 +84,9 @@ int main() {
   }
   // geschriebene Datei schliessen
   fout.close();
+
+  // Plot generieren
+  stringstream stream;
+  stream << "gnuplot " << plotFile;
+  system(stream.str().c_str());
 }
