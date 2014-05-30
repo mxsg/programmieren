@@ -67,18 +67,22 @@ int main() {
     double zero = 0;
 
     cout << "Teste f1(x) = cos(x) - x:" << endl <<  endl;
+
     cout << "Bisektionsverfahren:" << endl;
     zero = searchZeros(-10.0, 10.0, 1e-4, 1e-3, &f1, &pivotBisektion);
     cout << endl << "Ergebnis für Nullstelle: " << zero << endl << endl;
 
+    cout << "Sekantenverfahren:" << endl;
     zero = searchZeros(-10.0, 10.0, epsilonx, epsilony, &f1, &pivotSekante);
     cout << endl << "Ergebnis fuer Nullstelle: " << zero << endl << endl;
 
     cout << "Teste f2(x) = exp(x) - x^3:" << endl << endl;
+
     cout << "Bisektionsverfahren:" << endl;
     zero = searchZeros(2, 10, epsilonx, epsilony, &f2, &pivotBisektion);
     cout << endl << "Ergebnis fuer Nullstelle: " << zero << endl << endl;
 
+    cout << "Sekantenverfahren:" << endl;
     zero = searchZeros(2, 10, epsilonx, epsilony, &f2, &pivotSekante);
     cout << endl << "Ergebnis fuer Nullstelle: " << zero << endl << endl;
 

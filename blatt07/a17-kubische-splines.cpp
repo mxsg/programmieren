@@ -91,7 +91,7 @@ int main() {
     }
 
     int plotResolution = 0;
-    cout << "Wie viele Zwischenwerte sollen berechnet werden [" << defaultPlotResolution << "]?";
+    cout << "Wie viele Zwischenwerte sollen berechnet werden [" << defaultPlotResolution << "]? ";
     if(!(cin >> noskipws >> plotResolution)) plotResolution = defaultPlotResolution;
 
     double x, fx; // betrachtete Stelle
