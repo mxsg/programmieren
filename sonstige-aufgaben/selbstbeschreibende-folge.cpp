@@ -10,45 +10,34 @@
 
 using namespace std;
 
-struct termRange {
-    int term;
-    int high;
-};
+int computeTerm(unsigned int n) {
 
-int computeTerm(int n) {
+    vector<unsigned int> gliederAnz;
+    gliederAnz.push_back(0);
+    gliederAnz.push_back(1);
+    gliederAnz.push_back(3);
 
-    vector<termRange> gliederAnz;
-    termRange temp;
-    temp.term = 0; temp.high = 0;
-    gliederAnz.push_back(temp);
-    temp.term = 1; temp.high = 1;
-    gliederAnz.push_back(temp);
-    temp.term = 2; temp.high = 3;
-    gliederAnz.push_back(temp);
+    // Sonderfaelle abfangen
+    if(n <= 2) return n;
 
-    if(n<=0) return -1;
-    if(n==1) return 1;
-    if(n==2) return 2;
+    unsigned int counter;
 
-    int counter = 2;
-    int maxCtr = 3;
+    while(gliederAnz.back() < n) {
 
-    while(gliederAnz.back().high < n) {
-
-        counter = gliederAnz.back().term + 1;
         // naechste Anzahl bestimmen
-        int anzahl = 0;
-        while(gliederAnz[anzahl].high < counter) anzahl++;
-        termRange newTerm;
-        newTerm.term = counter; newTerm.high = gliederAnz.back().high + anzahl;
-        gliederAnz.push_back(newTerm);
+        counter = gliederAnz.size();
+        unsigned int anzahl = 0;
+        
+        while(gliederAnz[anzahl] < counter) anzahl++;
+        
+        gliederAnz.push_back(gliederAnz.back() + anzahl);
     }
-    return gliederAnz.back().term;
+    return gliederAnz.size() - 1;
 }
 
-void printComputation(int n) {
+void printComputation(unsigned int n) {
     cout << "Berechne Wert für n = " << n << " ..." << endl;
-    int result = computeTerm(n);
+    unsigned int result = computeTerm(n);
     cout << "Berechneter Wert: an = " << result << endl;
 }
 
