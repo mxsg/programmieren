@@ -69,7 +69,7 @@ int main() {
     cout << "Teste f1(x) = cos(x) - x:" << endl <<  endl;
 
     cout << "Bisektionsverfahren:" << endl;
-    zero = searchZeros(-10.0, 10.0, 1e-4, 1e-3, &f1, &pivotBisektion);
+    zero = searchZeros(-10.0, 10.0, epsilonx, epsilony, &f1, &pivotBisektion);
     cout << endl << "Ergebnis für Nullstelle: " << zero << endl << endl;
 
     cout << "Sekantenverfahren:" << endl;
