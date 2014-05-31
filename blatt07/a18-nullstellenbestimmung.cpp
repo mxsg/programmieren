@@ -12,8 +12,8 @@
 
 using namespace std;
 
-double epsilonx = 1e-4;
-double epsilony = 1e-3;
+const double epsilonx = 1e-4;
+const double epsilony = 1e-3;
 
 
 double searchZeros(double x0, double x1, double epsilonx, double epsilony, 
