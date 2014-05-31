@@ -10,11 +10,10 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <sys/syscall.h>
+#include <vector>
 
 using namespace std;
 
-const int maxPoints = 200;
 const string defaultInputFile = "a16-interpol.dat";
 const string resultFile = "a16-interpol-res.dat";
 const string plotFile = "a16-plot.gp";
@@ -36,20 +35,16 @@ int main() {
   }
 
   // Stuetzstellen
-  double xi[maxPoints], fxi[maxPoints];
-  int pointCtr = 0;
+  vector <double> xi, fxi;
 
   cout << "Stuetzstellen:" << endl;
 
-  while(fin >> xi[pointCtr] >> fxi[pointCtr]) {
+  double tempx, tempy;
+  while(fin >> tempx >> tempy) {
     // Stuetzstellen ausgeben
-    cout << "f(" << xi[pointCtr] << ") = " << fxi[pointCtr] << endl;
-    pointCtr++;
-
-    if(!(pointCtr<maxPoints)) {
-      cout << "Zu viele Stuetzstellen!" << endl;
-      exit(1);
-    }
+    cout << "f(" << tempx << ") = " << tempy << endl;
+    xi.push_back(tempx);
+    fxi.push_back(tempy);
   }
   fin.close();
 
@@ -69,10 +64,10 @@ int main() {
     fx = 0;
 
     // Interpolation berechnen
-    for(int i = 0; i<pointCtr; i++) {
+    for(int i = 0; i<xi.size(); i++) {
       lagrProdukt = fxi[i];
 
-      for(int k = 0; k<pointCtr; k++) {
+      for(int k = 0; k<xi.size(); k++) {
         if(i != k) lagrProdukt *= (x - xi[k])/(xi[i]-xi[k]);
       }
       fx += lagrProdukt;
