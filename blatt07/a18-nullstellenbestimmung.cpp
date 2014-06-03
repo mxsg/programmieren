@@ -21,7 +21,7 @@ double searchZeros(double x0, double x1, double epsilonx, double epsilony,
     
     // ueberpruefen, ob NST im Intervall
     if((func(x0)*func(x1) > 0)) {
-        cout << "Das eingegebene Intervall enthaelt nicht genau eine Nullstelle!" << endl;
+        cout << "Das Intervall enthaelt keine oder eine gerade Anzahl Nullstellen!" << endl;
         return(0);
     }
 
