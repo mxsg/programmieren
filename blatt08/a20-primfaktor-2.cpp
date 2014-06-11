@@ -12,7 +12,7 @@ using namespace std;
 
 int primeFactorTwo(int value) {
 
-    return (value % 2 != 0)? 0 : primeFactorTwo(value/2) + 1;
+    return (value % 2 != 0 || !value)? 0 : primeFactorTwo(value/2) + 1;
 }
 
 int main() {
