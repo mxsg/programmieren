@@ -16,11 +16,11 @@ void Rectangle::setSize(double width, double height) {
     }
 }
 
-double Rectangle::area() {
+double Rectangle::area() const {
     return this->width() * this->height();
 }
 
-double Rectangle::circumference() {
+double Rectangle::circumference() const {
     return 2*this->width() + 2*this->height();
 }
 
@@ -28,17 +28,17 @@ void Rectangle::rotate() {
     this->setSize(this->height(), this->width());
 }
 
-bool Rectangle::covers(Rectangle rect) {
+bool Rectangle::covers(Rectangle rect) const {
     return (this->width() >= rect.width() && 
             this->height() >= rect.height());
 }
 
-bool Rectangle::coversWithRotation(Rectangle rect) {
+bool Rectangle::coversWithRotation(Rectangle rect) const {
     return (this->covers(rect) || 
             (this->width()>=rect.height() && this->height()>= rect.width()));
 }
 
 std::ostream& operator<<(std::ostream &str, const Rectangle &rect) {
-    return str << "rect: (width = " << rect._width << ", height = "
-        << rect._height << ")";
+    return str << "rect: (width = " << rect.width() << ", height = "
+        << rect.height() << ")";
 }

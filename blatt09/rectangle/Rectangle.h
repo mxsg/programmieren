@@ -15,13 +15,13 @@ class Rectangle {
             : _width(width), _height(height) {};
 
         void setSize(double width, double height);
-        double width() { return this->_width; };
-        double height() { return this->_height; };
-        double area();
-        double circumference();
+        double width() const { return this->_width; };
+        double height() const { return this->_height; };
+        double area() const;
+        double circumference() const;
         void rotate();
-        bool covers(Rectangle rect);
-        bool coversWithRotation(Rectangle rect);
+        bool covers(Rectangle rect) const;
+        bool coversWithRotation(Rectangle rect) const;
 
     friend std::ostream& operator<<(std::ostream& str, const Rectangle &rect);
 };
