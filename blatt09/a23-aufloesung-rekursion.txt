@@ -1,0 +1,27 @@
+/*
+ * Programmieren für Physiker: C++
+ * SS 2014
+ *
+ * Aufgabe 23:
+ * Auflösung einer Rekursion
+ */
+
+// Funktion mit Rekursion:
+
+Type2 f(Type1 x) {
+    if(test(x)) return q(x);
+    return f(p(x));
+}
+
+
+// Funktion ohne Rekursion, mit Schleife:
+
+Type2 f(Type1 x) {
+    Type1 result = x;
+
+    while(!test(result)) {
+        result = p(result);
+    }
+
+    return q(result);
+}
