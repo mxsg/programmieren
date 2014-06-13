@@ -22,4 +22,6 @@ class Rectangle {
         void rotate();
         bool covers(Rectangle rect);
         bool coversWithRotation(Rectangle rect);
+
+    friend std::ostream& operator<<(std::ostream& str, const Rectangle &rect);
 };

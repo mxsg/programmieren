@@ -6,6 +6,7 @@
  * Rectangle-Klasse
  */
 
+#include <iostream>
 #include "Rectangle.h"
 
 void Rectangle::setSize(double width, double height) {
@@ -35,4 +36,9 @@ bool Rectangle::covers(Rectangle rect) {
 bool Rectangle::coversWithRotation(Rectangle rect) {
     return (this->covers(rect) || 
             (this->width()>=rect.height() && this->height()>= rect.width()));
+}
+
+std::ostream& operator<<(std::ostream &str, const Rectangle &rect) {
+    return str << "rect: (width = " << rect._width << ", height = "
+        << rect._height << ")";
 }
