@@ -21,17 +21,23 @@ void swapValues(Type &x, Type &y) {
 }
 
 template <typename Type>
+int choosePivot(Type array[], int s, int t) {
+    return s;
+}
+
+template <typename Type>
 int partition(Type array[], int s, int t) {
-    Type pivotValue = array[s];
+    int pivotIndex = choosePivot(array, s, t);
+    Type pivotValue = array[pivotIndex];
     int l = s;
 
-    for(int i = s+1; i<= t; i++) {
+    for(int i = s; i<= t; i++) {
         if(array[i] < pivotValue) {
             l++;
             swapValues(array[i], array[l]);
         }
     }
-    swapValues(array[s], array[l]);
+    swapValues(array[pivotIndex], array[l]);
 
     return l;
 }
@@ -40,7 +46,7 @@ template <typename Type>
 void quicksort(Type array[], int s, int t) {
 
     // nothing to do for less than 2 elements
-    if(!(s<t)) return;
+    if(s>=t) return;
     
     // find pivot and sort left and right parts
     int pivot = partition(array, s, t);
