@@ -13,22 +13,22 @@
 
 using namespace std;
 
-template <typename Type>
-void swapValues(Type &x, Type &y) {
-    Type temp = x;
+template <typename T>
+void swapValues(T &x, T &y) {
+    T temp = x;
     x = y;
     y = temp;
 }
 
-template <typename Type>
-int choosePivot(Type array[], int s, int t) {
+template <typename T>
+int choosePivot(T array[], int s, int t) {
     return s;
 }
 
-template <typename Type>
-int partition(Type array[], int s, int t) {
+template <typename T>
+int partition(T array[], int s, int t) {
     int pivotIndex = choosePivot(array, s, t);
-    Type pivotValue = array[pivotIndex];
+    T pivotValue = array[pivotIndex];
     int l = s;
 
     for(int i = s; i<= t; i++) {
@@ -42,8 +42,8 @@ int partition(Type array[], int s, int t) {
     return l;
 }
 
-template <typename Type>
-void quicksort(Type array[], int s, int t) {
+template <typename T>
+void quicksort(T array[], int s, int t) {
 
     // nothing to do for less than 2 elements
     if(s>=t) return;
@@ -54,8 +54,8 @@ void quicksort(Type array[], int s, int t) {
     quicksort(array, pivot+1, t);
 }
 
-template <typename Type>
-void printArray(Type array[], int size, int columns) {
+template <typename T>
+void printArray(T array[], int size, int columns) {
     cout << "n = " << size << endl;
     for(int i=0; i<size; i++) {
         cout << left << setw(10) << array[i] << " ";
