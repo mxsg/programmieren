@@ -74,7 +74,7 @@ int main() {
     srand((unsigned int)time(0));
 
     // fill array with random elements
-    double array[size];
+    double *array = new double[size];
     for(int i=0; i<size; i++) {
         array[i] = double(rand())/RAND_MAX;
     }
@@ -87,4 +87,6 @@ int main() {
 
     cout << endl << "Sortiertes Array:" << endl;
     printArray(array, size, 6);
+
+    delete[] array;
 }
