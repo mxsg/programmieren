@@ -21,7 +21,7 @@ void swapValues(T &x, T &y) {
 }
 
 template <typename T>
-int choosePivot(T array[], int s, int t) {
+inline int choosePivot(T array[], int s, int t) {
     return s;
 }
 
