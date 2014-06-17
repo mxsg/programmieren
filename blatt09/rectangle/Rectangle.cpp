@@ -11,8 +11,8 @@
 
 void Rectangle::setSize(double width, double height) {
     if(width >= 0.0 && height >= 0.0) {
-        this->_width = width;
-        this->_height = height;
+        _width = width;
+        _height = height;
     }
 }
 
