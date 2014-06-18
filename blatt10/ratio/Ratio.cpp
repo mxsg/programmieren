@@ -94,5 +94,8 @@ Ratio Ratio::operator/(const Ratio b) {
 }
 
 std::ostream& operator<<(std::ostream &str, const Ratio ratio) {
-    return str << ratio._num << "/" << ratio._denom;
+
+    str << ratio._num;
+    if(ratio._denom != 1) str << "/" << ratio._denom;
+    return str;
 }
