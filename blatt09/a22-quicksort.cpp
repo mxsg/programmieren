@@ -21,23 +21,17 @@ void swapValues(T &x, T &y) {
 }
 
 template <typename T>
-inline int choosePivot(T array[], int s, int t) {
-    return s;
-}
-
-template <typename T>
 int partition(T array[], int s, int t) {
-    int pivotIndex = choosePivot(array, s, t);
-    T pivotValue = array[pivotIndex];
+    T pivotValue = array[s];
     int l = s;
 
-    for(int i = s; i<= t; i++) {
+    for(int i = s+1; i<= t; i++) {
         if(array[i] < pivotValue) {
             l++;
             swapValues(array[i], array[l]);
         }
     }
-    swapValues(array[pivotIndex], array[l]);
+    swapValues(array[s], array[l]);
 
     return l;
 }
