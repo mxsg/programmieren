@@ -7,9 +7,11 @@
  */
 
 #include "NormalGenerator.h"
+#include <iostream>
 #include <cstdlib>
 #include <ctime>
 #include <cmath>
+#include <vector>
 
 NormalGenerator::NormalGenerator() {
     lastNumber = 0.0;
@@ -20,7 +22,6 @@ NormalGenerator::NormalGenerator() {
 }
 
 double NormalGenerator::generateRandomNumbers() {
-
 
     double v1, v2;
     double s;
@@ -45,4 +46,15 @@ double NormalGenerator::get() {
     } else {
         return generateRandomNumbers();
     }
+}
+
+std::vector<double> NormalGenerator::randomVector(int randCount) {
+
+    std::vector<double> rands;
+    std::cout << "Generating " << randCount << " random numbers ..." << std::endl;
+    for(int i=0; i<randCount; i++) {
+        rands.push_back(get());
+    }
+
+    return rands;
 }

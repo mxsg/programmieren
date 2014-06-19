@@ -34,50 +34,53 @@ double standardDeviation(vector<double> numbers, double mean) {
     return sqrt(result/size);
 }
 
-double fractionOutsideRange(vector<double> numbers, double mean, double diff) {
+double standardDeviation(vector<double> numbers) {
+    return standardDeviation(numbers, mean(numbers));
+}
+
+double fractionOutsideRange(vector<double> numbers, double center, double radius) {
     double ctr = 0;
-    double lowerBound = mean - diff;
-    double upperBound = mean + diff;
+    double lowerBound = center - radius;
+    double upperBound = center + radius;
 
     for(vector<double>::iterator it = numbers.begin(); it != numbers.end(); it++) {
+        // count elements outside bounds
         if(*it < lowerBound || *it > upperBound) ctr++;
     }
 
     return ctr/(double)numbers.size();
 }
 
+
 int main() {
 
     NormalGenerator gen = NormalGenerator();
-
+    int randCount;
     vector<double> rands;
+    
+    cout << "Number of generated random values: ";
+    cin >> randCount;
 
-    cout << "Generating random numbers ..." << endl;
-
-    for(int i=0; i<1000000; i++) {
-        rands.push_back(gen.get());
-    }
+    cout << endl;
+    rands = gen.randomVector(randCount);
+    cout << endl;
 
     double randMean = mean(rands);
-    double randStandardDeviation = standardDeviation(rands, randMean);
+    double randstd = standardDeviation(rands, randMean);
 
     cout << "Mean: " << randMean << endl;
-    cout << "Standard Deviation: " << randStandardDeviation << endl;
+    cout << "Standard Deviation: " << randstd << endl;
 
-    cout << endl << "Generating random numbers ..." << endl;
-
-    rands.clear();
-
-    for(int i=0; i<1000000; i++) {
-        rands.push_back(gen.get());
-    }
+    cout << endl;
+    rands = gen.randomVector(randCount);
+    cout << endl;
 
     randMean = mean(rands);
-    double randsd = standardDeviation(rands, randMean);
+    randstd = standardDeviation(rands, randMean);
 
-    cout << "Fractions outside No. of Deviations:" << endl;
+    cout << "Percentage outside number of deviations:" << endl;
     for(int i=1; i<=3; i++) {
         cout << i << " sigma: "
-            << fractionOutsideRange(rands, randMean, i*randsd) << endl;
+            << 100*fractionOutsideRange(rands, randMean, i*randstd) << "%" << endl;
     }
 }

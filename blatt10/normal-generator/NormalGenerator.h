@@ -6,6 +6,8 @@
  * Normalverteilte Zufallszahlen
  */
 
+#include <vector>
+
 class NormalGenerator {
 
     private:
@@ -18,4 +20,5 @@ class NormalGenerator {
         NormalGenerator();
 
         double get();
+        std::vector<double> randomVector(int randCount);
 };
