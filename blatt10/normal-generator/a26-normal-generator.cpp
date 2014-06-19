@@ -78,9 +78,14 @@ int main() {
     randMean = mean(rands);
     randstd = standardDeviation(rands, randMean);
 
+    // expected probability for values outside
+    // of number of standard deviations (for normal distribution)
+    double expOutsideDeviations[] = {100, 31.731, 4.550, 0.269};
+
     cout << "Percentage outside number of deviations:" << endl;
     for(int i=1; i<=3; i++) {
         cout << i << " sigma: "
-            << 100*fractionOutsideRange(rands, randMean, i*randstd) << "%" << endl;
+            << 100*fractionOutsideRange(rands, randMean, i*randstd) << "%" 
+            << " (" << expOutsideDeviations[i] << "% expected)" << endl;
     }
 }
