@@ -76,7 +76,8 @@ int main() {
     double randsd = standardDeviation(rands, randMean);
 
     cout << "Fractions outside No. of Deviations:" << endl;
-    cout << "1 sigma: " << fractionOutsideRange(rands, randMean, randsd) << endl;
-    cout << "2 sigma: " << fractionOutsideRange(rands, randMean, 2*randsd) << endl;
-    cout << "3 sigma: " << fractionOutsideRange(rands, randMean, 3*randsd) << endl;
+    for(int i=1; i<=3; i++) {
+        cout << i << " sigma: "
+            << fractionOutsideRange(rands, randMean, i*randsd) << endl;
+    }
 }
