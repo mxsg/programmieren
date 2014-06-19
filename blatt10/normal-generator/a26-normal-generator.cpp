@@ -34,6 +34,18 @@ double standardDeviation(vector<double> numbers, double mean) {
     return sqrt(result/size);
 }
 
+double fractionOutsideRange(vector<double> numbers, double mean, double diff) {
+    double ctr = 0;
+    double lowerBound = mean - diff;
+    double upperBound = mean + diff;
+
+    for(vector<double>::iterator it = numbers.begin(); it != numbers.end(); it++) {
+        if(*it < lowerBound || *it > upperBound) ctr++;
+    }
+
+    return ctr/(double)numbers.size();
+}
+
 int main() {
 
     NormalGenerator gen = NormalGenerator();
@@ -52,4 +64,19 @@ int main() {
     cout << "Mean: " << randMean << endl;
     cout << "Standard Deviation: " << randStandardDeviation << endl;
 
+    cout << endl << "Generating random numbers ..." << endl;
+
+    rands.clear();
+
+    for(int i=0; i<1000000; i++) {
+        rands.push_back(gen.get());
+    }
+
+    randMean = mean(rands);
+    double randsd = standardDeviation(rands, randMean);
+
+    cout << "Fractions outside No. of Deviations:" << endl;
+    cout << "1 sigma: " << fractionOutsideRange(rands, randMean, randsd) << endl;
+    cout << "2 sigma: " << fractionOutsideRange(rands, randMean, 2*randsd) << endl;
+    cout << "3 sigma: " << fractionOutsideRange(rands, randMean, 3*randsd) << endl;
 }
