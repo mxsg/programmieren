@@ -107,11 +107,6 @@ int main() {
     cout << "Mean: " << randMean << endl;
     cout << "Standard Deviation: " << randstd << endl;
 
-    rands = gen.randomVector(randCount);
-
-    randMean = mean(rands);
-    randstd = standardDeviation(rands, randMean);
-
     // expected probability for values outside
     // of number of standard deviations (for normal distribution)
     double expOutsideDeviations[] = {100, 31.731, 4.550, 0.269};
