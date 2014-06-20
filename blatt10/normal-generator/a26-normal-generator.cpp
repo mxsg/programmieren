@@ -65,7 +65,7 @@ void plotData(vector<double> data, double mean, double deviation, double radius,
     for(vector<double>::iterator it = data.begin(); it != data.end(); it++) {
         double dataPoint = *it;
 
-        int binID = (int)floor(dataPoint/binwidth) + binCnt/2;
+        int binID = (int)floor((dataPoint-mean)/binwidth) + binCnt/2;
 
         if(binID >= 0 && binID < binCnt) {
             bins[binID]++;
@@ -79,7 +79,7 @@ void plotData(vector<double> data, double mean, double deviation, double radius,
 
     // count numbers in bins
     for(int i=0; i<binCnt; i++) {
-        double binMid = (i - binCnt/2)*binwidth + binwidth/2.0;
+        double binMid = (i - binCnt/2)*binwidth + binwidth/2.0 + mean;
         fout << binMid << " " << bins[i] << endl;
     }
 
@@ -123,5 +123,5 @@ int main() {
             << " (" << expOutsideDeviations[i] << "% expected)" << endl;
     }
 
-    plotData(rands, randMean, randstd, 5, 100);
+    plotData(rands, expMean, expDeviation, 4*expDeviation, 100);
 }
