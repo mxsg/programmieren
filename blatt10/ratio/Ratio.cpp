@@ -24,6 +24,7 @@ Ratio::Ratio(long a, long b) {
 
     _num = a;
     _denom = b;
+    reduceRatio(); // always construct reduced ratios
 }
 
 void Ratio::reduceRatio() {
@@ -66,14 +67,10 @@ Ratio Ratio::operator+(const Ratio b) {
     // construct new Ratio
     Ratio result = Ratio(lcm/_denom*_num + lcm/b._denom*b._num, lcm);
 
-    // reduce result
-    result.reduceRatio();
-
     return result;
 }
 
 Ratio Ratio::operator-() const {
-
     return Ratio(-_num, _denom);
 }
 
@@ -84,7 +81,6 @@ Ratio Ratio::operator-(const Ratio b) {
 Ratio Ratio::operator*(const Ratio b) {
     
     Ratio result = Ratio(_num * b._num, _denom * b._denom);
-    result.reduceRatio();
     return result;
 }
 
