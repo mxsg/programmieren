@@ -54,15 +54,17 @@ double fractionOutsideRange(vector<double> numbers, double center, double radius
 
 int main() {
 
-    NormalGenerator gen = NormalGenerator();
-    int randCount;
     vector<double> rands;
     
-    cout << "Number of generated random values: ";
-    cin >> randCount;
+    // read in parameters with default values
+    int randCount = 1000000; double expMean = 0; double expDeviation = 1;
+    cout << "Number of values: "; cin >> randCount;
+    cout << "Expected mean: "; cin >> expMean;
+    cout << "Expected Deviation: "; cin >> expDeviation;
+
+    NormalGenerator gen = NormalGenerator(expMean, expDeviation);
 
     rands = gen.randomVector(randCount);
-
     double randMean = mean(rands);
     double randstd = standardDeviation(rands, randMean);
 
