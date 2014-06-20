@@ -57,10 +57,11 @@ double NormalGenerator::get() {
 std::vector<double> NormalGenerator::randomVector(int randCount) {
 
     std::vector<double> rands;
-    std::cout << "Generating " << randCount << " random numbers ..." << std::endl;
+    std::cout << "Generating " << randCount << " random numbers ... " << std::flush;
     for(int i=0; i<randCount; i++) {
         rands.push_back(get());
     }
+    std::cout << "done." << std::endl;
 
     return rands;
 }

@@ -61,9 +61,7 @@ int main() {
     cout << "Number of generated random values: ";
     cin >> randCount;
 
-    cout << endl;
     rands = gen.randomVector(randCount);
-    cout << endl;
 
     double randMean = mean(rands);
     double randstd = standardDeviation(rands, randMean);
@@ -71,9 +69,7 @@ int main() {
     cout << "Mean: " << randMean << endl;
     cout << "Standard Deviation: " << randstd << endl;
 
-    cout << endl;
     rands = gen.randomVector(randCount);
-    cout << endl;
 
     randMean = mean(rands);
     randstd = standardDeviation(rands, randMean);
