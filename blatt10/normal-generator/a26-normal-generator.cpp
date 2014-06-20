@@ -8,6 +8,7 @@
 
 #include "NormalGenerator.h"
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <cmath>
 
@@ -51,6 +52,41 @@ double fractionOutsideRange(vector<double> numbers, double center, double radius
     return ctr/(double)numbers.size();
 }
 
+void plotData(vector<double> data, double mean, double deviation, double radius, int binCnt) {
+
+    const string resultBinFile = "a26-result-binned.dat";
+
+    double binwidth = 2*radius/binCnt;
+    // make sure number of bins is even
+    if(binCnt % 2 != 0) binCnt++;
+
+    vector<int> bins(binCnt);
+    // iterate through data
+    for(vector<double>::iterator it = data.begin(); it != data.end(); it++) {
+        double dataPoint = *it;
+
+        int binID = (int)floor(dataPoint/binwidth) + binCnt/2;
+
+        if(binID >= 0 && binID < binCnt) {
+            bins[binID]++;
+        }
+    }
+    ofstream fout(resultBinFile);
+    if(!fout) {
+        cerr << "Kann Datei nicht oeffnen!" << endl;
+        return;
+    }
+
+    // count numbers in bins
+    for(int i=0; i<binCnt; i++) {
+        double binMid = (i - binCnt/2)*binwidth + binwidth/2.0;
+        fout << binMid << " " << bins[i] << endl;
+    }
+
+    cout << "Alle Bins in Datei geschrieben." << endl;
+    system("gnuplot a26-plot.gp");
+    cout << "Histogramm generiert." << endl;
+}
 
 int main() {
 
@@ -86,4 +122,6 @@ int main() {
             << 100*fractionOutsideRange(rands, randMean, i*randstd) << "%" 
             << " (" << expOutsideDeviations[i] << "% expected)" << endl;
     }
+
+    plotData(rands, randMean, randstd, 5, 100);
 }
