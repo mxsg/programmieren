@@ -73,9 +73,11 @@ void plotData(vector<double> data, double mean, double deviation, double radius,
     }
     ofstream fout(resultBinFile);
     if(!fout) {
-        cerr << "Kann Datei nicht oeffnen!" << endl;
+        cerr << "Cannot open file! Aborting plotting of data." << endl;
         return;
     }
+
+    cout << "Writing bins to file " << resultBinFile << " ... " << flush;
 
     // count numbers in bins
     for(int i=0; i<binCnt; i++) {
@@ -83,9 +85,9 @@ void plotData(vector<double> data, double mean, double deviation, double radius,
         fout << binMid << " " << bins[i] << endl;
     }
 
-    cout << "Alle Bins in Datei geschrieben." << endl;
+    cout << "done." << endl << "Generating histogram ... ";
     system("gnuplot a26-plot.gp");
-    cout << "Histogramm generiert." << endl;
+    cout << "done." << endl;
 }
 
 int main() {
@@ -96,7 +98,7 @@ int main() {
     int randCount = 1000000; double expMean = 0; double expDeviation = 1;
     cout << "Number of values: "; cin >> randCount;
     cout << "Expected mean: "; cin >> expMean;
-    cout << "Expected Deviation: "; cin >> expDeviation;
+    cout << "Expected deviation: "; cin >> expDeviation;
 
     NormalGenerator gen = NormalGenerator(expMean, expDeviation);
 
@@ -105,7 +107,7 @@ int main() {
     double randstd = standardDeviation(rands, randMean);
 
     cout << "Mean: " << randMean << endl;
-    cout << "Standard Deviation: " << randstd << endl;
+    cout << "Standard deviation: " << randstd << endl;
 
     // expected probability for values outside
     // of number of standard deviations (for normal distribution)
