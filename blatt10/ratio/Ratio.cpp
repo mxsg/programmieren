@@ -13,11 +13,10 @@ Ratio::Ratio(long a, long b) {
 
     // catch erroneous inputs
     if(!b) {
-        std::cerr << "Error in Ratio initialisation:" << std::endl 
+        std::cerr << "Error in Ratio initialisation: "
             << "denom==0, set to 1 instead" << std::endl;
         b = 1;
     }
-
     // flip signs for negative denominator
     if(b < 0) {
         a *= -1; b *= -1;
