@@ -80,8 +80,13 @@ Ratio Ratio::operator-(const Ratio b) {
 
 Ratio Ratio::operator*(const Ratio b) {
     
-    Ratio result = Ratio(_num * b._num, _denom * b._denom);
-    return result;
+    // calculate gcds to avoid overflows
+    long gcd1 = greatestCommonDivisor(_num, b._denom);
+    long gcd2 = greatestCommonDivisor(_denom, b._num);
+    long resNum = (_num/gcd1) * (b._num/gcd2);
+    long resDenom = (_denom/gcd2) * (b._denom/gcd1);
+
+    return Ratio(resNum, resDenom);
 }
 
 Ratio Ratio::operator/(const Ratio b) {
