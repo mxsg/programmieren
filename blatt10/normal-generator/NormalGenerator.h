@@ -11,13 +11,15 @@
 class NormalGenerator {
 
     private:
+        double mean, deviation;
         double lastNumber;
         bool randLeft;
 
         double generateRandomNumbers();
+        double calcNormDistributed(double v, double s);
 
     public:
-        NormalGenerator();
+        NormalGenerator(double newMean=0, double newDeviation=1);
 
         double get();
         std::vector<double> randomVector(int randCount);

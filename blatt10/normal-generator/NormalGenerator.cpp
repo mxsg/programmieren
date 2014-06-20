@@ -13,8 +13,10 @@
 #include <cmath>
 #include <vector>
 
-NormalGenerator::NormalGenerator() {
+NormalGenerator::NormalGenerator(double newMean, double newDeviation) {
     lastNumber = 0.0;
+    mean = newMean;
+    deviation = newDeviation;
     randLeft = false;
 
     // initialize PRNG
@@ -30,12 +32,16 @@ double NormalGenerator::generateRandomNumbers() {
         v1 = 2.0*(rand()/(double)RAND_MAX) - 1;
         v2 = 2.0*(rand()/(double)RAND_MAX) - 1;
         s = pow(v1,2) + pow(v2,2);
-    } while(s >= 1 || s==0);
+    } while(s >= 1 || s==0.0);
 
-    lastNumber = v1*sqrt(-2*log(s)/s);
+    lastNumber = calcNormDistributed(v1, s);
     randLeft = true;
 
-    return v2*sqrt(-2*log(s)/s);
+    return calcNormDistributed(v2, s);
+}
+
+double NormalGenerator::calcNormDistributed(double v, double s) {
+    return pow(deviation, 2)*v*sqrt(-2*log(s)/s) + mean;
 }
 
 double NormalGenerator::get() {
