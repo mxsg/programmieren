@@ -41,7 +41,7 @@ double NormalGenerator::generateRandomNumbers() {
 }
 
 double NormalGenerator::calcNormDistributed(double v, double s) {
-    return pow(deviation, 2)*v*sqrt(-2*log(s)/s) + mean;
+    return deviation*v*sqrt(-2*log(s)/s) + mean;
 }
 
 double NormalGenerator::get() {
