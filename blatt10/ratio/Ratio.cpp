@@ -6,8 +6,8 @@
  * rationale Zahlen
  */
 
-#import "Ratio.h"
-#import <iostream>
+#include "Ratio.h"
+#include <iostream>
 
 Ratio::Ratio(long a, long b) {
 
