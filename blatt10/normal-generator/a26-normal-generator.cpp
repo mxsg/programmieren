@@ -55,11 +55,13 @@ double fractionOutsideRange(vector<double> numbers, double center, double radius
 void plotData(vector<double> data, double mean, double deviation, double radius, int binCnt) {
 
     const string resultBinFile = "a26-result-binned.dat";
+    const string resultConstFile = "a26-result-const.dat";
 
     double binwidth = 2*radius/binCnt;
     // make sure number of bins is even
     if(binCnt % 2 != 0) binCnt++;
 
+    cout << "Binning data ... " << flush;
     vector<int> bins(binCnt);
     // iterate through data
     for(vector<double>::iterator it = data.begin(); it != data.end(); it++) {
@@ -71,21 +73,31 @@ void plotData(vector<double> data, double mean, double deviation, double radius,
             bins[binID]++;
         }
     }
+    cout << "done." << endl;
+
     ofstream fout(resultBinFile);
-    if(!fout) {
+    ofstream foutConst(resultConstFile);
+    if(!fout || !foutConst) {
         cerr << "Cannot open file! Aborting plotting of data." << endl;
         return;
     }
 
     cout << "Writing bins to file " << resultBinFile << " ... " << flush;
 
+    // write constants for gnuplot
+    foutConst << "N = " << data.size() << endl;
+    foutConst << "mean = " << mean << endl;
+    foutConst << "deviation = " << deviation << endl;
+    foutConst.close();
+
     // count numbers in bins
     for(int i=0; i<binCnt; i++) {
         double binMid = (i - binCnt/2)*binwidth + binwidth/2.0 + mean;
-        fout << binMid << " " << bins[i] << endl;
+        fout << binMid << " " << bins[i]/(data.size()*binwidth) << endl;
     }
+    fout.close();
 
-    cout << "done." << endl << "Generating histogram ... ";
+    cout << "done." << endl << "Generating histogram ... " << flush;
     system("gnuplot a26-plot.gp");
     cout << "done." << endl;
 }
