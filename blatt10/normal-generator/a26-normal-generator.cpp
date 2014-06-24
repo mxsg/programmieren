@@ -17,8 +17,8 @@ using namespace std;
 double mean(vector<double> numbers) {
     double result;
 
-    for(vector<double>::iterator it = numbers.begin(); it != numbers.end(); it++) {
-        result += *it;
+    for(auto& it : numbers) {
+        result += it;
     }
 
     return result / numbers.size();
@@ -28,8 +28,8 @@ double standardDeviation(vector<double> numbers, double mean) {
     double result;
     int size = numbers.size();
 
-    for(vector<double>::iterator it = numbers.begin(); it != numbers.end(); it++) {
-        result += pow(*it - mean, 2);
+    for(auto& it : numbers) {
+        result += pow(it - mean, 2);
     }
 
     return sqrt(result/size);
@@ -44,9 +44,9 @@ double fractionOutsideRange(vector<double> numbers, double center, double radius
     double lowerBound = center - radius;
     double upperBound = center + radius;
 
-    for(vector<double>::iterator it = numbers.begin(); it != numbers.end(); it++) {
+    for(auto& it : numbers) {
         // count elements outside bounds
-        if(*it < lowerBound || *it > upperBound) ctr++;
+        if(it < lowerBound || it > upperBound) ctr++;
     }
 
     return ctr/(double)numbers.size();
@@ -64,8 +64,8 @@ void plotData(vector<double> data, double mean, double deviation, double radius,
     cout << "Binning data ... " << flush;
     vector<int> bins(binCnt);
     // iterate through data
-    for(vector<double>::iterator it = data.begin(); it != data.end(); it++) {
-        double dataPoint = *it;
+    for(auto& it : data) {
+        double dataPoint = it;
 
         int binID = (int)floor((dataPoint-mean)/binwidth) + binCnt/2;
 
