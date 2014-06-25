@@ -8,6 +8,7 @@
 
 #include "Ratio.h"
 #include <iostream>
+#include <cstdlib>
 
 Ratio::Ratio(long a, long b) {
 
@@ -47,7 +48,7 @@ long Ratio::greatestCommonDivisor(long a, long b) const {
 long Ratio::leastCommonMultiple(long a, long b) const {
 
     // algorithm only works for positive numbers
-    a = abs(a); b = abs(b);
+    a = std::abs(a); b = std::abs(b);
 
     return a / greatestCommonDivisor(a, b) * b;
 }
