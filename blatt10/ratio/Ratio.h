@@ -23,10 +23,10 @@ class Ratio {
         Ratio invert() const;
         
         Ratio operator-() const;
-        Ratio operator+(const Ratio b);
-        Ratio operator-(const Ratio b);
-        Ratio operator*(const Ratio b);
-        Ratio operator/(const Ratio b);
+        Ratio operator+(const Ratio b) const;
+        Ratio operator-(const Ratio b) const;
+        Ratio operator*(const Ratio b) const;
+        Ratio operator/(const Ratio b) const;
 
     friend std::ostream& operator<<(std::ostream &str, const Ratio ratio);
 };

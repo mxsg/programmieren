@@ -60,7 +60,7 @@ Ratio Ratio::invert() const {
     return Ratio(_denom, _num);
 }
 
-Ratio Ratio::operator+(const Ratio b) {
+Ratio Ratio::operator+(const Ratio b) const {
 
     long lcm = leastCommonMultiple(_denom, b._denom);
 
@@ -74,11 +74,11 @@ Ratio Ratio::operator-() const {
     return Ratio(-_num, _denom);
 }
 
-Ratio Ratio::operator-(const Ratio b) {
+Ratio Ratio::operator-(const Ratio b) const {
     return -b + *this;
 }
 
-Ratio Ratio::operator*(const Ratio b) {
+Ratio Ratio::operator*(const Ratio b) const {
     
     // calculate gcds to avoid overflows
     long gcd1 = greatestCommonDivisor(_num, b._denom);
@@ -89,7 +89,7 @@ Ratio Ratio::operator*(const Ratio b) {
     return Ratio(resNum, resDenom);
 }
 
-Ratio Ratio::operator/(const Ratio b) {
+Ratio Ratio::operator/(const Ratio b) const {
     return *this * b.invert();
 }
 
