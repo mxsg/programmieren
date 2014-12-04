@@ -7,7 +7,7 @@
  */
 
 #include <iostream>
-#include "Rectangle.h"
+#include "Rectangle.hpp"
 
 using namespace std;
 

@@ -21,7 +21,7 @@ class Ratio {
 
         double doubleValue() const;
         Ratio invert() const;
-        
+
         Ratio operator-() const;
         Ratio operator+(const Ratio b) const;
         Ratio operator-(const Ratio b) const;

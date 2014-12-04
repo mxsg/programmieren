@@ -6,7 +6,7 @@
  * Normalverteilte Zufallszahlen
  */
 
-#include "NormalGenerator.h"
+#include "NormalGenerator.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>

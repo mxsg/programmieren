@@ -7,7 +7,7 @@
  */
 
 #include <iostream>
-#include "Rectangle.h"
+#include "Rectangle.hpp"
 
 void Rectangle::setSize(double width, double height) {
     if(width >= 0.0 && height >= 0.0) {

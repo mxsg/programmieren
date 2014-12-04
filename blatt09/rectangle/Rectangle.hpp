@@ -11,7 +11,7 @@ class Rectangle {
     double _width, _height;
 
     public:
-        Rectangle(double width=0, double height=0) 
+        Rectangle(double width=0, double height=0)
             : _width(width), _height(height) {};
 
         void setSize(double width, double height);

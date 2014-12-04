@@ -6,7 +6,7 @@
  * rationale Zahlen
  */
 
-#include "Ratio.h"
+#include "Ratio.hpp"
 #include <iostream>
 #include <cstdlib>
 
